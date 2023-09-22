@@ -9,18 +9,17 @@ jobs:
      fetch-depth: 0
    # Setup java 17 to be default (sonar-scanner requirement as of 5.x)
   - uses: actions/setup-java@v3
-     with:
+    with:
       distribution: 'temurin' # See 'Supported distributions' for available options
       java-version: '17'
     # Setup sonar-scanner
-    - name: Setup SonarQube
-      uses: warchant/setup-sonar-scanner@v7
+  - name: Setup SonarQube
+    uses: warchant/setup-sonar-scanner@v7
     # Run sonar-scanner
-    - name: SonarQube Scan
+  - name: SonarQube Scan
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Neeeeded to get PR information, if any
-       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      run: sonar-scanner -Dsonar.projectKey=python_code_scan-Dsonar.sources=. -Dsonar.host.url=http://
-      3.87.178.52:9000 -Dsonar.login=sqp_2f7d50751ff526faa7bbddf42419b3eb522c1ef8
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Neeeeded to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      run: sonar-scanner -Dsonar.projectKey=python_code_scan -Dsonar.sources=. -Dsonar.host.url=http://3.87.178.52:9000 -Dsonar.login=sqp_2f7d50751ff526faa7bbddf42419b3eb522c1ef8
   
